@@ -31,13 +31,22 @@
     <label for="name">Name</label>
     <input class="form-control" value="<?= (isset($row['name']))?($row['name']):('') ?>" type="text" name="name" id= "name" required  />
     <label for="year">Year</label>
-    <input class="form-control" value="<?= (isset($row['year']))?($row['year']):('') ?>" type="text" name="year" id= "year"  onkeypress="return isNumberKey(event);" />
     <select  class="form-control" id="year" name="year">
         <?php 
             include 'dbConfig.php';
             $sql0 = mysqli_query($db, "SELECT * FROM year");
             while ($row0 = mysqli_fetch_assoc($sql0)){ ?>
                 <option <?= (isset($row['year']) && ($row['year']==$row0['id']))?('selected'):('') ?> value="<?php echo $row0["id"] ?>"> <?php echo $row0["name"] ?> </option>
+        <?php } ?>        
+    </select>
+    <label for="display_order">Display Order</label>
+    <select  class="form-control" id="display_order" name="display_order">
+        <option value=""></option>
+        <?php 
+            include 'dbConfig.php';
+            $sql0 = mysqli_query($db, "SELECT * FROM description");
+            while ($row0 = mysqli_fetch_assoc($sql0)){ ?>
+                <option <?= (isset($row['display_order']) && ($row['display_order']==$row0['id']))?('selected'):('') ?> value="<?php echo $row0["id"] ?>"> <?php echo $row0["description"] ?> </option>
         <?php } ?>        
     </select>
     <input class="form-control" value="<?= (isset($row['id']))?($row['id']):('') ?>" type="hidden" name="id" id= "id"  />
@@ -126,6 +135,7 @@
     // var files = $('#file')[0].files;
     // console.log(files);
     var name=  $("#name").val();
+    var display_order=  $("#display_order").val();
     var year=  $("#year").val();
     var id=  $("#id").val();
     var image=  $("#image").val();
@@ -148,6 +158,7 @@
     // fd.append('file',files[0]);
     fd.append('filecount',files.length);
     fd.append('name',name);
+    fd.append('display_order',display_order);
     fd.append('year',year);
     fd.append('image',image);
     fd.append('id',id);

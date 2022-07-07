@@ -2,7 +2,7 @@
 <?php
   include('../session.php');
   include '../dbConfig.php';
-  $query = "SELECT * FROM year WHERE status = 1".((!empty($_GET['search'])) ? (" AND name LIKE '%".$_GET['search']."%'") : (""))." ".((!empty($_GET['sort'])) ? 'ORDER BY '.$_GET['sort'].' '.$_GET['order'] : '') ." LIMIT ".$_GET['offset'].",".$_GET['limit'];  
+  $query = "SELECT * FROM description WHERE status = 1".((!empty($_GET['search'])) ? (" AND description LIKE '%".$_GET['search']."%'") : (""))." LIMIT ".$_GET['offset'].",".$_GET['limit'];  
   $sql = mysqli_query($db, $query);
   $data =array();
   $counter = $_GET['offset']+1;
@@ -12,7 +12,7 @@
     $counter++;
   }
 
-  $query2 = "SELECT count(id) as count FROM year WHERE status = 1"; 
+  $query2 = "SELECT count(id) as count FROM description WHERE status = 1"; 
   $sql2 = mysqli_query($db, $query2);
   // $data2 =array();
   // while ($row2 = mysqli_fetch_assoc($sql2)){array_push($data2, $row2);}

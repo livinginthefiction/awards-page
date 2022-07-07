@@ -12,7 +12,7 @@
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Year List </h4>      
+                  <h4 class="card-title">Description List </h4>      
                     <div id="toolbar"></div>
                     <table
   id="table"
@@ -28,7 +28,7 @@
   data-show-footer="true"
   data-side-pagination="server"
   data-buttons="buttons"
-  data-url="ajax/getYears.php"
+  data-url="ajax/getdescription.php"
   data-response-handler="responseHandler">
 </table>
                 
@@ -64,7 +64,7 @@
         icon: 'fa-plus',
         event: function () {
           // alert('Do some stuff to e.g. add a new row')
-          window.location.replace('editYear.php?id=');
+          window.location.replace('editDesc.php?id=');
         },
         attributes: {
           title: 'Add new Category'
@@ -104,10 +104,10 @@
  function operateFormatter(value, row, index) {
     // console.log('operateFormatter',value,row,index);
     return [
-      '<a class="like" href="editYear.php?id='+row.id+'" title="Edit">',
+      '<a class="like" href="editDesc.php?id='+row.id+'" title="Edit">',
       '<i style="font-size: 22px;" class="mx-1 fas fa-edit"></i>',
       '</a>  ',
-      '<a class="remove" href="ajax/deleteyear.php?id='+row.id+'" title="Remove">',
+      '<a class="remove" href="ajax/deletedesc.php?id='+row.id+'" title="Remove">',
       '<i style="font-size: 22px;" class="mx-1 fa fa-trash"></i>',
       '</a>'
     ].join('')
@@ -155,35 +155,25 @@
           align: 'center'
         },
         {
-          field: 'name',
-          title: 'Year',
+          field: 'description',
+          title: 'Description',
           sortable: true,
           // footerFormatter: totalNameFormatter,
           align: 'center'
-        },
-        {
-          field: 'arname',
-          title: 'سنة',
+        },{
+          field: 'ardescription',
+          title: 'وصف',
           sortable: true,
           // footerFormatter: totalNameFormatter,
           align: 'center'
-        },
-        // {
-        //   field: 'description',
-        //   title: 'Description',
-        //   sortable: false,
-        //   // footerFormatter: totalNameFormatter,
-        //   align: 'center'
-        // },
-        //  {
-        //   field: 'image',
-        //   title: 'Image',
-        //   sortable: true,
-        //   align: 'center',
-        //   formatter: imageFormatter
-        //   // footerFormatter: totalPriceFormatter
-        // },
-         {
+        }, {
+          field: 'image',
+          title: 'Image',
+          sortable: true,
+          align: 'center',
+          formatter: imageFormatter
+          // footerFormatter: totalPriceFormatter
+        }, {
           field: 'operate',
           title: 'Item Operate',
           align: 'center',
